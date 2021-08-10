@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1256px;
+            height: 743px;
+        }
+        </style>
+        <title>Arabia UFO </title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/UFO_Arabia_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[15.729189338650853,29.89611408357578],[35.91626102028833,64.05885077557765]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_Wikimediaunlabelledlayer_0');
+        map.getPane('pane_Wikimediaunlabelledlayer_0').style.zIndex = 400;
+        var layer_Wikimediaunlabelledlayer_0 = L.tileLayer('https://maps.wikimedia.org/osm/{z}/{x}/{y}.png', {
+            pane: 'pane_Wikimediaunlabelledlayer_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 18
+        });
+        layer_Wikimediaunlabelledlayer_0;
+        map.addLayer(layer_Wikimediaunlabelledlayer_0);
+        function pop_UFO_Arabia_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Date</th>\
+                        <td>' + (feature.properties['datetime'] !== null ? autolinker.link(feature.properties['datetime'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Location</th>\
+                        <td>' + (feature.properties['city'] !== null ? autolinker.link(feature.properties['city'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Shape of UFO</th>\
+                        <td>' + (feature.properties['shape'] !== null ? autolinker.link(feature.properties['shape'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">full_fil_1</th>\
+                        <td>' + (feature.properties['full_fil_1'] !== null ? autolinker.link(feature.properties['full_fil_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Duration (sec)</th>\
+                        <td>' + (feature.properties['duration_s'] !== null ? autolinker.link(feature.properties['duration_s'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Description</th>\
+                        <td>' + (feature.properties['comments'] !== null ? autolinker.link(feature.properties['comments'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_UFO_Arabia_1_0(feature) {
+            switch(String(feature.properties['shape'])) {
+                case 'changing':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(236,230,58,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'chevron':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(58,64,233,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'cigar':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(14,81,226,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'circle':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(203,149,33,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'cone':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,223,96,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'cylinder':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(131,15,239,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'diamond':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(49,214,57,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'disk':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(202,112,96,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'egg':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(63,212,192,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'fireball':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(203,104,198,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'flash':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(13,206,74,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'formation':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(209,53,74,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'light':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(236,117,32,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'none':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(145,123,215,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'other':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(73,202,151,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'oval':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(212,86,137,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'rectangle':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(100,233,63,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'sphere':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(193,47,233,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'teardrop':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(127,234,19,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'triangle':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(122,218,232,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'unknown':
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(16,131,214,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_UFO_Arabia_1',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,108,182,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_UFO_Arabia_1');
+        map.getPane('pane_UFO_Arabia_1').style.zIndex = 401;
+        map.getPane('pane_UFO_Arabia_1').style['mix-blend-mode'] = 'normal';
+        var layer_UFO_Arabia_1 = new L.geoJson(json_UFO_Arabia_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_UFO_Arabia_1',
+            layerName: 'layer_UFO_Arabia_1',
+            pane: 'pane_UFO_Arabia_1',
+            onEachFeature: pop_UFO_Arabia_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_UFO_Arabia_1_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_UFO_Arabia_1);
+        map.addLayer(layer_UFO_Arabia_1);
+            var title = new L.Control();
+            title.onAdd = function (map) {
+                this._div = L.DomUtil.create('div', 'info');
+                this.update();
+                return this._div;
+            };
+            title.update = function () {
+                this._div.innerHTML = '<h2>Arabia UFO </h2>';
+            };
+            title.addTo(map);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'UFO_Arabia<br /><table><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_changing0.png" /></td><td>changing</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_chevron1.png" /></td><td>chevron</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_cigar2.png" /></td><td>cigar</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_circle3.png" /></td><td>circle</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_cone4.png" /></td><td>cone</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_cylinder5.png" /></td><td>cylinder</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_diamond6.png" /></td><td>diamond</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_disk7.png" /></td><td>disk</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_egg8.png" /></td><td>egg</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_fireball9.png" /></td><td>fireball</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_flash10.png" /></td><td>flash</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_formation11.png" /></td><td>formation</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_light12.png" /></td><td>light</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_none13.png" /></td><td>none</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_other14.png" /></td><td>other</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_oval15.png" /></td><td>oval</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_rectangle16.png" /></td><td>rectangle</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_sphere17.png" /></td><td>sphere</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_teardrop18.png" /></td><td>teardrop</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_triangle19.png" /></td><td>triangle</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_unknown20.png" /></td><td>unknown</td></tr><tr><td style="text-align: center;"><img src="legend/UFO_Arabia_1_21.png" /></td><td></td></tr></table>': layer_UFO_Arabia_1,"Wikimedia unlabelled layer": layer_Wikimediaunlabelledlayer_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
