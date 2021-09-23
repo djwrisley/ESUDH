@@ -1,0 +1,19 @@
+
+node
+  [amenity=drinking_water]
+  ({{bbox}});
+out;
+
+# try other Point-based queries:  amenity =  | building = church / mosque| historic=ruins | man_made=petroleum_well | natural=tree
+
+
+[out:csv(highway,name)];
+area
+  [wikidata="Q3820"];
+way(area)[highway][name];
+out;
+
+#  Q3820 is a Wikidata entry
+
+
+https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_API_by_Example
